@@ -1,0 +1,20 @@
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/serverstyles.css') }}">
+
+</head>
+
+<body>
+        
+    <h1>
+        OfficeFace
+    </h1>
+
+    <form action="/checkin", method="POST">
+        <h2>Patient Checkin</h2>
+        <input type="text" name="patient_id">
+            <br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
