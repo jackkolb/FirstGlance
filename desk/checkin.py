@@ -25,13 +25,28 @@ def checkin_patient(patient_id):
 
     # add patient to queue
     add_patient_to_queue(patient_id)
+
+    # add patient to checked in
+    add_patient_to_checked_in(patient_id)
     
+    return
+
+def add_patient_to_checked_in(patient_id):
+    checked_in = db.child("rooms").child("checked in").get().val()
+    if str(type(checked_in)) == "<class 'NoneType'>":
+        checked_in = []
+    
+    checked_in.append(patient_id)
+    db.child("rooms").child("checked in").set(checked_in)
     return
 
 # checks if a patient is checked in
 def check_is_patient_checked_in(patient_id):
     # retrieves checked in list from firebase
     checked_in = db.child("rooms").child("checked in").get().val()
+
+    if str(type(checked_in)) == "<class 'NoneType'>":
+        return False
 
     # see if patient in list, return True if yes, False if no
     if patient_id in checked_in:
@@ -42,7 +57,7 @@ def check_is_patient_checked_in(patient_id):
 def get_patient_basic_information(patient_id):
     # retrieves from firebase
     patient_basic_information = db.child("patient information").child(patient_id)
-    if type(patient_basic_information) == "NoneType":
+    if str(type(patient_basic_information)) == "<class 'NoneType'>":
         return "invalid id"
 
     print(str(patient_basic_information))
@@ -70,7 +85,9 @@ def add_patient_to_doctor_queue(doctor, patient_id, patient_room):
 def align_rooms():
     room_list = db.child("rooms").child("rooms").get().val()
     queue = db.child("rooms").child("queue").get().val()
-    patient_information = db.child("patient information").get().val()
+
+    if str(type(queue)) == "<class 'NoneType'>":
+        return
 
     for room in room_list.items():
         if room[1]["doctor"] == "":
