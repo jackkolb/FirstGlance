@@ -3,6 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# our API keys
+*.key
+firebase_config.py
+serviceaccount.json
+
 # C extensions
 *.so
 

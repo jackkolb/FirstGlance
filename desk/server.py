@@ -1,4 +1,7 @@
 from flask import Flask, render_template, request, redirect
+import checkin
+import time
+import multiprocessing
 
 app = Flask(__name__)
 
@@ -9,7 +12,16 @@ def index():
 @app.route("/checkin", methods=["POST"])
 def login():
     patient_id = request.form["patient_id"]
-    print(patient_id)
+    checkin.checkin_patient(patient_id)
     return redirect("/", code=302)
 
-app.run()
+def periodic():
+    while True:
+        checkin.align_rooms()
+        time.sleep(5)
+
+if __name__ == "__main__":
+    p = multiprocessing.Process(target=periodic)
+    p.start()
+
+    app.run()
