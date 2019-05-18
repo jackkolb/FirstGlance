@@ -1,20 +1,31 @@
-<head>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/serverstyles.css') }}">
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/serverstyles.css') }}">
 
-</head>
+    </head>
 
-<body>
+    <body>
+            
+        <br><br>
+
+        <div class="title">
+            <center>
+                OfficeFace
+            </center>
+        </div>
+
+        <div class="checkin-form">
+            <center>
+                <form action="/checkin", method="POST">
+                    Patient Checkin
+                    <br><br>
+                    <input type="text" name="patient_id">
+                    <br><br>
+                    <input type="submit" value="Submit">
+                </form>
+            </center>
+        </div>
         
-    <h1>
-        OfficeFace
-    </h1>
-
-    <form action="/checkin", method="POST">
-        <h2>Patient Checkin</h2>
-        <input type="text" name="patient_id">
-            <br><br>
-        <input type="submit" value="Submit">
-    </form>
-
-</body>
+    </body>
+</html>
