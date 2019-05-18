@@ -12,4 +12,4 @@ def login():
     print(patient_id)
     return redirect("/", code=302)
 
-app.run()
+ app.run()
