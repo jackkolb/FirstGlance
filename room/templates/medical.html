@@ -11,7 +11,7 @@
 
         <div class="title">
             <center>
-                OfficeFace
+                Patient
             </center>
         </div>
 
@@ -21,26 +21,30 @@
 
 <div class="checkin-form">
 <center>
-<form action="/checkin", method="POST">
-<br><br>
-    <p>Patient: </p>
-<p>ID: #</p>
-<p>DOB: </p>
-Height:
-<input type="text" placeholder="[current height]" name="patient_height">
-<br>
-Weight:
-<input type="text" placeholder="[current weight]" name="patient_weight">
-<br>
-Preferred Physician:
-<input type="text" placeholder="[current doctor]" name="preferred_doctor">
-<br>
-Medical History:
-<input type="text" placeholder="[medical history]" name="medical_past">
-<br>
-Allergies:
-<input type="text" placeholder="[known allergies]" name="patient_known_allergies">
-<br>
+<form action="/update", method="POST">
+    <br><br>
+        <p>Patient: {{ last_name }}, {{ first_name }}</p>
+    <p>ID: #{{ patient_id }}</p>
+    <p>DOB: {{ DOB }}</p>
+    Height:
+    <input type="text" placeholder="{{ height }}" name="patient_height">
+    <br>
+    Weight:
+    <input type="text" placeholder="{{ weight }}" name="patient_weight">
+    <br>
+    Preferred Physician:
+    <input type="text" placeholder="{{ preferred_physician }}" name="preferred_doctor">
+    <br>
+    Medical History:
+    <input type="text" placeholder="{{ medical_history }}" name="medical_past">
+    <br>
+    Allergies:
+    <input type="text" placeholder="{{ allergies }}" name="patient_known_allergies">
+    <br>
+    <input type="submit" value="Update">
+</form>
+<form action="/close", method="GET">
+    <input type="submit" value="Close">
 </form>
 </center> 
     </body>

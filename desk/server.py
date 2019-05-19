@@ -24,4 +24,4 @@ if __name__ == "__main__":
     p = multiprocessing.Process(target=periodic)
     p.start()
 
-    app.run()
+    app.run(host='0.0.0.0')

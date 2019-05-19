@@ -13,7 +13,7 @@ user = auth.sign_in_with_custom_token(token)
 db = firebase.database()
 
 doctor_name = "NO DOCTOR"
-patient_name = "NO PATIENT"
+patient_id = "NO PATIENT"
 
 room_number = "NO ROOM NUMBER"
 
@@ -27,10 +27,9 @@ def get_room_number():
 
 # gets the room information from firebase
 def get_room_information(room_number):
-    global doctor_name
+    global doctor_name, patient_id
     # retrieves from firebase
     room_information = db.child("rooms").child("rooms").child(room_number).get().val()
-    print(room_information)
     if str(type(room_information)) == "<class 'NoneType'>":
         return "free"
 
@@ -41,11 +40,23 @@ def get_room_information(room_number):
     
     return doctor_name, patient_id
 
+def open_room(room_number):
+    empty = {
+        "doctor": "",
+        "patient": ""
+    }
+    db.child("rooms").child("rooms").child(room_number).set(empty)
+    
+    checkins = db.child("rooms").child("checked in").get().val()
+    checkins.remove(patient_id)
+    db.child("rooms").child("checked in").set(checkins)
+    return
+
 
 # get patient medical data from firebase
 def get_patient_medical(patient_id):
     # retrieves from firebase
-    patient_medical_information = db.child("patient information").child(patient_id)
+    patient_medical_information = db.child("patient information").child(patient_id).get().val()
     if str(type(patient_medical_information)) == "<class 'NoneType'>":
         return "invalid id"
     return patient_medical_information
@@ -54,8 +65,9 @@ def get_patient_medical(patient_id):
 def periodicLoop():
     while True:
         doctor, patient_id = get_room_information(room_number)
+        print(doctor)
         if doctor == "" or doctor == "NO DOCTOR" or doctor == None:
-            time.sleep(5)
+            time.sleep(1)
             continue
         break
     return

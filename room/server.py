@@ -16,6 +16,12 @@ def index():
 def eyes():
     return render_template("eyes.html")
 
+@app.route("/close", methods=["GET"])
+def close():
+    room_util.open_room(room_util.room_number)
+    return redirect("/", code=302)
+
+
 @socketio.on('connect', namespace="/eye-catch")
 def eyecatch():
     print("client connected - eyecatch")
@@ -34,10 +40,11 @@ def periodic():
 def medical():
     doctor_name = room_util.doctor_name
     if room_util.wait_for_doctor(doctor_name):
-        return render_template("medical.html")
+        patient_data = room_util.get_patient_medical(room_util.patient_id)
+        return render_template("medical.html", patient_id=room_util.patient_id, first_name=patient_data["first name"], last_name=patient_data["last name"], height=patient_data["height"], weight=patient_data["weight"], DOB=patient_data["DOB"], preferred_physician=patient_data["preferred physician"], medical_history=patient_data["medical history"], allergies=patient_data["allergies"])
     else:
         return redirect("/", code=302)
 
 if __name__ == "__main__":
     room_util.get_room_number()
-    app.run(port=4000)
+    app.run(host='0.0.0.0', port=4000)

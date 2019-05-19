@@ -89,6 +89,11 @@ def align_rooms():
     if str(type(queue)) == "<class 'NoneType'>":
         return
 
+    if len(queue) == 0:
+        return
+
+    print(type(queue))
+
     for room in room_list.items():
         if room[1]["doctor"] == "":
             patient_id = queue[0]
@@ -100,5 +105,8 @@ def align_rooms():
             db.child("rooms").child("queue").set(queue)
 
             print("updated room")
+
+            if len(queue) == 0:
+                break
     
     
