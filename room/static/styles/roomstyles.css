@@ -21,18 +21,19 @@ input::placeholder {
   }
 
   .object {
-    animation: MoveUpDown 5s linear infinite;
+    animation: float 5s linear infinite;
     position: absolute;
-    left: 625;
-    bottom: 00;
+    left: 50%;
+    bottom: 0%;
+    transform: translate(-50%, -0%);
   }
 
-  @keyframes MoveUpDown {
+  @keyframes float {
     0%, 100% {
       bottom: 0;
     }
     50% {
-      bottom: 100px;
+      bottom: 75px;
     }
   }
 
