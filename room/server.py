@@ -1,4 +1,4 @@
-# SERVER FOR THE ROOM COMPUTERS!
+# SERVER FOR THE DOCTOR ROOM COMPUTERS!
 
 from flask import Flask, render_template, request, redirect
 import room_util
@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("roomindex.html")
+    return render_template("index.html")
 
 
 @app.route("/eyes")
