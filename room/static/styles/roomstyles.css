@@ -23,8 +23,8 @@ input::placeholder {
   .object {
     animation: MoveUpDown 5s linear infinite;
     position: absolute;
-    left: 650;
-    bottom: 0;
+    left: 625;
+    bottom: 00;
   }
 
   @keyframes MoveUpDown {
