@@ -19,7 +19,7 @@ def eyes():
 @socketio.on('connect', namespace="/eye-catch")
 def eyecatch():
     print("client connected - eyecatch")
-    room_util.wait_for_doctor("Sumanth Dara")
+    room_util.wait_for_doctor(room_util.doctor_name)
     socketio.emit('continue', {'pass': True}, namespace='/eye-catch')
 
 

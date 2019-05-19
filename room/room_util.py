@@ -27,16 +27,18 @@ def get_room_number():
 
 # gets the room information from firebase
 def get_room_information(room_number):
+    global doctor_name
     # retrieves from firebase
-    room_information = db.child("rooms").child("rooms").child(room_number)
+    room_information = db.child("rooms").child("rooms").child(room_number).get().val()
+    print(room_information)
     if str(type(room_information)) == "<class 'NoneType'>":
         return "free"
 
-    if room_information.child("doctor").get().val() == "":
+    if room_information["doctor"] == "":
         return "free"
-    print(room_information.get().val())
-    doctor_name = room_information.child("doctor").get().val()
-    patient_id = room_information.child("patient").get().val()
+    doctor_name = room_information["doctor"]
+    patient_id = room_information["patient"]
+    
     return doctor_name, patient_id
 
 
@@ -52,7 +54,6 @@ def get_patient_medical(patient_id):
 def periodicLoop():
     while True:
         doctor, patient_id = get_room_information(room_number)
-        print(str(doctor))
         if doctor == "" or doctor == "NO DOCTOR" or doctor == None:
             time.sleep(5)
             continue
@@ -68,6 +69,7 @@ def wait_for_doctor(doctor_name):
     }
 
     if doctor_name not in doctor_images.keys():
+        print("invalid doctor")
         return False
     
     doctor_image = face_recognition.load_image_file(doctor_images[doctor_name])
