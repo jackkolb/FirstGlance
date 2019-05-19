@@ -11,12 +11,7 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: lighter;
     margin: auto;
-    font-size: 5vh;
-
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    font-size: 4vh;
 }
 
 html {
@@ -26,8 +21,12 @@ html {
     background: -webkit-linear-gradient(#293f50, #a7dacf);
     background-repeat: no-repeat;
 }
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    color: lightgray;
 
 h2 {
     font-family: 'Montserrat', sans-serif;
     color: lightgray;
+    font-size: 12px;
 }
