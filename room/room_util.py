@@ -1,6 +1,14 @@
 import face_recognition
 import cv2
 
+room_number = "NO ROOM NUMBER"
+
+
+def get_room_number():
+    with open("room/room", "r") as room_number_file:
+        room_number = room_number_file.readline()
+    return room_number
+
 
 def wait_for_doctor(doctor_name):
 
