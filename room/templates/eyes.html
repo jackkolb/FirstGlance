@@ -1,8 +1,8 @@
 <html>
     <head>
         <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-        <link rel= "stylesheet" type= "text/css" href= "./roomstyles.css">
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
     </head>
 
     <body>
@@ -15,7 +15,7 @@
             </center>
         </div>
 
-        <div class="checkin-form">
+        <div class="eyes">
             <center>
                <img src=eyes.gif>
             </center>
@@ -23,3 +23,19 @@
         
     </body>
 </html>
+
+
+<script>
+
+     //Client-side Javascript code for handling random numbers
+     $(document).ready(function(){
+        //connect to the socket server.
+        var socket = io.connect('http://' + document.domain + ':' + location.port + '/eye-catch');
+
+        //receive signal from server
+        socket.on('continue', function(msg) {
+            window.location.href = "../medical"; // redirect to /medical
+        });
+    });
+
+</script>
