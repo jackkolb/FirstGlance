@@ -10,8 +10,9 @@
     color: lightgrey;
     font-family: 'Montserrat', sans-serif;
     font-weight: lighter;
-    margin: auto;
+    width: 80%;
     font-size: 4vh;
+    text-align: left;
 }
 
 input::placeholder {

@@ -38,7 +38,7 @@ def get_room_information(room_number):
     doctor_name = room_information["doctor"]
     patient_id = room_information["patient"]
     
-    return doctor_name, patient_id
+    return doctor_name
 
 def open_room(room_number):
     empty = {
@@ -62,11 +62,18 @@ def get_patient_medical(patient_id):
     return patient_medical_information
 
 
+def update_information(info):
+    db.child("patient information").child(patient_id).child("allergies").set(info["patient_allergies"])
+    db.child("patient information").child(patient_id).child("preferred physician").set(info["preferred_doctor"])
+    db.child("patient information").child(patient_id).child("weight").set(info["patient_weight"])
+    db.child("patient information").child(patient_id).child("height").set(info["patient_height"])
+    db.child("patient information").child(patient_id).child("medical history").set(info["medical_past"])
+    return
+
 def periodicLoop():
     while True:
-        doctor, patient_id = get_room_information(room_number)
-        print(doctor)
-        if doctor == "" or doctor == "NO DOCTOR" or doctor == None:
+        doctor = get_room_information(room_number)
+        if doctor == "" or doctor == "free" or doctor == "NO DOCTOR" or doctor == None:
             time.sleep(1)
             continue
         break

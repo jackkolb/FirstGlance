@@ -19,8 +19,15 @@ def eyes():
 @app.route("/close", methods=["GET"])
 def close():
     room_util.open_room(room_util.room_number)
+    room_util.patient_id = ""
+    room_util.doctor_name = ""
     return redirect("/", code=302)
 
+@app.route("/update", methods=["POST"])
+def update():
+    print(request.form)
+    room_util.update_information(request.form)
+    return redirect("/eyes", code=302)
 
 @socketio.on('connect', namespace="/eye-catch")
 def eyecatch():
