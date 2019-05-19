@@ -14,7 +14,27 @@
     font-size: 4vh;
 }
 
+input::placeholder {
+    color: grey;
+    font-size: 1.2em;
+    font-style: italic;
+  }
 
+  .object {
+    animation: MoveUpDown 5s linear infinite;
+    position: absolute;
+    left: 600;
+    bottom: 0;
+  }
+
+  @keyframes MoveUpDown {
+    0%, 100% {
+      bottom: 0;
+    }
+    50% {
+      bottom: 100px;
+    }
+  }
 
 html {
     height: 100%;
@@ -26,6 +46,7 @@ html {
 h1 {
     font-family: 'Montserrat', sans-serif;
     color: lightgray;
+}
 
 h2 {
     font-family: 'Montserrat', sans-serif;
