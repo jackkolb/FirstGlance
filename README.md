@@ -1,4 +1,4 @@
-# OfficeFace
+# FirstGlance
 
 Patient check-in system made for UC Riverside's BioHack 2019.
 
