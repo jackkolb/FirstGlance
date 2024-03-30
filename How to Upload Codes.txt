@@ -1,5 +1,0 @@
-Make the change in code
-Stage chage
-Commit (with message)
-Do a few commits
-Push
